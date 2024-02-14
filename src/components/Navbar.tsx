@@ -5,25 +5,30 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Navbar() {
-	const [open, setOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 	const pathname = usePathname();
-	const isActive = (href: string) => pathname === href;
+	const hasSession = true;
+	const isAdmin = true;
 	const links = [
 		{ name: 'Home', href: '/' },
 		{ name: 'About', href: '/about' },
 		{ name: 'Contact', href: '/contact' },
 		{ name: 'Blog', href: '/blog' }
 	];
-	const hasSession = true;
-	const isAdmin = true;
+	const isActive = (href: string) => pathname === href;
 
 	return (
 		<nav className="flex justify-between items-center h-28">
-			<div className="text-3xl">Logo</div>
-			<ul className="flex items-center gap-4">
+			<Link href="/" className="text-3xl font-black uppercase hover:text-blue-500 active:text-blue-600 transition">
+				Thoughts
+			</Link>
+			<ul className="hidden items-center gap-4 min-[768px]:flex">
 				{links.map(link => (
 					<li key={link.name}>
-						<Link href={link.href} className={`${isActive(link.href) && 'rounded-xl bg-white text-black py-2 px-3'}`}>
+						<Link
+							href={link.href}
+							className={`${isActive(link.href) && 'border-b-4 border-blue-500 py-2 px-3 transition duration-300 ease-in-out'}`}
+						>
 							{link.name}
 						</Link>
 					</li>
@@ -33,7 +38,10 @@ export default function Navbar() {
 					<>
 						{isAdmin && (
 							<li>
-								<Link href="/admin" className={`${isActive('/admin') && 'rounded-xl bg-white text-black py-2 px-3'}`}>
+								<Link
+									href="/admin"
+									className={`${isActive('/admin') && 'border-b-4 border-blue-500 py-2 px-3 transition duration-300 ease-in-out'}`}
+								>
 									Admin
 								</Link>
 							</li>
@@ -48,6 +56,46 @@ export default function Navbar() {
 					</li>
 				)}
 			</ul>
+
+			<button className="min-[768px]:hidden" onClick={() => setIsOpen(prev => !prev)}>
+				Menu
+			</button>
+			{isOpen && (
+				<ul className="absolute top-28 right-0 w-1/2 h-[calc(100vh-112px)] min-[768px]:hidden flex flex-col items-center justify-center gap-3">
+					{links.map(link => (
+						<li key={link.name}>
+							<Link
+								href={link.href}
+								className={`${isActive(link.href) && 'border-b-4 border-blue-500 py-2 px-3 transition duration-300 ease-in-out'}`}
+							>
+								{link.name}
+							</Link>
+						</li>
+					))}
+
+					{hasSession ? (
+						<>
+							{isAdmin && (
+								<li>
+									<Link
+										href="/admin"
+										className={`${isActive('/admin') && 'border-b-4 border-blue-500 py-2 px-3 transition duration-300 ease-in-out'}`}
+									>
+										Admin
+									</Link>
+								</li>
+							)}
+							<button className="rounded-md bg-white text-black py-2 px-3 hover:bg-slate-100">Logout</button>
+						</>
+					) : (
+						<li>
+							<Link href="/login" className="rounded-md bg-white text-black py-2 px-3">
+								Login
+							</Link>
+						</li>
+					)}
+				</ul>
+			)}
 		</nav>
 	);
 }

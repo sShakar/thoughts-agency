@@ -1,3 +1,10 @@
 export default function HomePage() {
-	return <h1>Hello Next</h1>;
+	return (
+		<main>
+			<div>
+				<h1>Thoughts Agency</h1>
+			</div>
+			<div></div>
+		</main>
+	);
 }
