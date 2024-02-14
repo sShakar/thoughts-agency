@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function HomePage() {
 	return (
@@ -10,8 +11,12 @@ export default function HomePage() {
 					praesentium recusandae vitae. Consequatur, quaerat.
 				</p>
 				<div className="flex gap-6">
-					<button className="bg-blue-500 active:bg-blue-600 py-2 px-4 rounded">Learn More</button>
-					<button className="bg-slate-200 active:bg-slate-300 text-black  py-2 px-4 rounded">Contact</button>
+					<Link href="/about" className="bg-blue-500 active:bg-blue-600 py-2 px-4 rounded">
+						Learn More
+					</Link>
+					<Link href="/contact" className="bg-slate-200 active:bg-slate-300 text-black  py-2 px-4 rounded">
+						Contact
+					</Link>
 				</div>
 				<div>
 					<Image className="grayscale" alt="" src="/brands.png" width={500} height={500} />
