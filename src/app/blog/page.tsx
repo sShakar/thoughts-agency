@@ -1,3 +1,12 @@
+import Post from '@/components/Post';
+
 export default function BlogPage() {
-	return <h1>Blog</h1>;
+	return (
+		<main className="row">
+			<Post />
+			<Post />
+			<Post />
+			<Post />
+		</main>
+	);
 }
