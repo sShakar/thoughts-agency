@@ -46,7 +46,7 @@ export default function Navbar() {
 								</Link>
 							</li>
 						)}
-						<button className="uppercase rounded-md border-2 py-2 px-3 hover:bg-slate-100 hover:text-black transition">
+						<button className="uppercase rounded-md border-2 py-2 px-3 hover:bg-slate-100 active:bg-slate-300 hover:text-black transition">
 							Logout
 						</button>
 					</>
@@ -90,7 +90,7 @@ export default function Navbar() {
 									</Link>
 								</li>
 							)}
-							<button className="uppercase rounded-md border-2 py-2 px-3 hover:bg-slate-100 hover:text-black transition">
+							<button className="uppercase rounded-md border-2 py-2 px-3 hover:bg-slate-100 active:bg-slate-300 hover:text-black transition">
 								Logout
 							</button>
 						</>
@@ -98,7 +98,7 @@ export default function Navbar() {
 						<li>
 							<Link
 								href="/login"
-								className="uppercase rounded-md border-2 py-2 px-3 hover:bg-slate-100 hover:text-black transition"
+								className="uppercase rounded-md border-2 py-2 px-3 hover:bg-slate-100 active:bg-slate-300 hover:text-black transition"
 							>
 								Login
 							</Link>
