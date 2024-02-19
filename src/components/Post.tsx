@@ -23,7 +23,7 @@ export default function Post() {
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur, culpa eveniet ipsum molestiae
 					nemo numquam officia quibusdam rem veritatis.
 				</p>
-				<Link className="underline" href="/">
+				<Link className="underline" href="/blog/2">
 					READ MORE
 				</Link>
 			</div>
