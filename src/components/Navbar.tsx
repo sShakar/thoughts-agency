@@ -18,7 +18,7 @@ export default function Navbar() {
 	const isActive = (href: string) => pathname === href;
 
 	return (
-		<nav className="flex justify-between items-center h-28">
+		<nav className="max-md:mx-5 flex justify-between items-center h-28">
 			<Link href="/" className="text-3xl font-black uppercase hover:text-blue-500 active:text-blue-600 transition">
 				Thoughts
 			</Link>
@@ -66,7 +66,7 @@ export default function Navbar() {
 				Menu
 			</button>
 			{isOpen && (
-				<ul className="absolute top-28 right-0 w-1/2 h-[calc(100vh-112px)] min-[768px]:hidden flex flex-col items-center justify-center gap-3">
+				<ul className="absolute bg-black top-28 right-0 w-1/2 h-[calc(100vh-112px)] min-[768px]:hidden flex flex-col items-center justify-center gap-3">
 					{links.map(link => (
 						<li key={link.name}>
 							<Link
