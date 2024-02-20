@@ -2,10 +2,12 @@ import Image from 'next/image';
 
 export default function AboutPage() {
 	return (
-		<main className="flex justify-between items-center">
+		<main className="flex max-md:flex-col max-md:gap-16 max-md:my-10 justify-between items-center">
 			<div className="w-1/2 flex flex-col items-start gap-16">
-				<h1 className="font-black text-2xl text-blue-500">About Agency</h1>
-				<h1 className="font-black text-7xl">We create digital ideas that are bigger, bolder, braver and better.</h1>
+				<h1 className="font-black text-md md:text-2xl text-blue-500">About Agency</h1>
+				<h1 className="font-black text-4xl md:text-7xl">
+					We create digital ideas that are bigger, bolder, braver and better.
+				</h1>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore laboriosam magnam molestias nam neque officia
 					praesentium recusandae vitae. Consequatur, quaerat.

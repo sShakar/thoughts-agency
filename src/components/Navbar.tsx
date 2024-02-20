@@ -66,7 +66,7 @@ export default function Navbar() {
 				Menu
 			</button>
 			{isOpen && (
-				<ul className="absolute bg-black top-28 right-0 w-1/2 h-[calc(100vh-112px)] min-[768px]:hidden flex flex-col items-center justify-center gap-3">
+				<ul className="z-10 absolute bg-black top-28 right-0 w-1/2 h-[calc(100vh-112px)] min-[768px]:hidden flex flex-col items-center justify-center gap-3">
 					{links.map(link => (
 						<li key={link.name}>
 							<Link

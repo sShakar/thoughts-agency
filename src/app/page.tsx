@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 export default function HomePage() {
 	return (
-		<main className="flex justify-between items-center">
+		<main className="flex max-md:flex-col justify-between items-center">
 			<div className="w-1/2 flex flex-col items-start gap-16">
-				<h1 className="font-black text-9xl">Thoughts Agency.</h1>
+				<h1 className="font-black text-6xl md:text-9xl">Thoughts Agency.</h1>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore laboriosam magnam molestias nam neque officia
 					praesentium recusandae vitae. Consequatur, quaerat.
