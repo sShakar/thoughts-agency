@@ -1,23 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
 
 export default function ContactPage() {
-	const [isClient, setIsClient] = useState(false);
-
-	useEffect(() => {
-		setIsClient(true);
-	}, []);
-
-	const a = Math.random();
-	console.log(a);
 	return (
 		<main className="flex max-md:flex-col max-md:gap-16 justify-between items-center">
 			<div className="w-1/2 flex justify-start">
 				<Image alt="" src="/contact.png" width={500} height={500} />
 			</div>
-			{isClient && a}
 			<form
 				action=""
 				className="w-10/12 md:w-1/2 shadow-lg shadow-slate-800 border border-slate-500 p-10 rounded-lg flex flex-col items-center gap-10"
