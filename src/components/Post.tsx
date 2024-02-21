@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { PostType } from '@/types/post';
 
-export default function Post() {
+export default function Post({ post }: { post: PostType }) {
 	return (
 		<div className="md:w-3/12 w-full flex flex-col gap-5 mb-5">
 			<div className="flex">
@@ -18,12 +19,9 @@ export default function Post() {
 			</div>
 
 			<div>
-				<h2 className="text-lg w-11/12 mb-5">Post Title</h2>
-				<p className="mb-5 font-light text-gray-500 w-11/12">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur, culpa eveniet ipsum molestiae
-					nemo numquam officia quibusdam rem veritatis.
-				</p>
-				<Link className="underline" href="/blog/2">
+				<h2 className="text-lg w-11/12 mb-5">{post.title}</h2>
+				<p className="mb-5 font-light text-gray-500 w-11/12">{post.body}</p>
+				<Link className="underline" href={`/blog/${post.id}`}>
 					READ MORE
 				</Link>
 			</div>
