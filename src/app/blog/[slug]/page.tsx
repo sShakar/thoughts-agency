@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { Suspense } from 'react';
-import { getPost, getUser } from '@/lib/data';
+import { getUser } from '@/lib/data';
 import { Metadata } from 'next';
+import { PostType } from '@/types/postTypes';
 
 // async function getSlug(slug: string) {
 // 	const post: PostType = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`, {
@@ -24,6 +25,11 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 		description: post.description
 	};
 };
+
+async function getPost(slug: string): Promise<PostType> {
+	const res = await fetch(`http:localhost:8080/api/blog/${slug}`);
+	return res.json();
+}
 
 export default async function BlogSlugPage({ params }: { params: { slug: string } }) {
 	const post = await getPost(params.slug);
