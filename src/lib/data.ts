@@ -1,8 +1,9 @@
-import { Post, User } from '@/lib/models';
 import { unstable_noStore as noStore } from 'next/cache';
 import { connectToDatabase } from '@/lib/database';
+import { Post, User } from '@/lib/models';
+import type { PostType, UserType } from '@/types/postTypes';
 
-export const getPosts = async () => {
+export const getPosts = async (): Promise<PostType[]> => {
 	try {
 		await connectToDatabase();
 		return await Post.find();
@@ -12,28 +13,30 @@ export const getPosts = async () => {
 	}
 };
 
-export const getPost = async (slug: typeof Post) => {
+export const getPost = async (slug: string): Promise<PostType> => {
 	try {
 		await connectToDatabase();
-		return await Post.findOne({ slug });
+		const data = await Post.findOne({ slug });
+		return data;
 	} catch (err) {
 		console.log(err);
 		throw new Error('Failed to fetch post!');
 	}
 };
 
-export const getUser = async (id: string) => {
+export const getUser = async (id: string): Promise<UserType> => {
 	noStore();
 	try {
 		await connectToDatabase();
-		return await User.findById(id);
+		const data = await User.findById(id);
+		return data;
 	} catch (err) {
 		console.log(err);
 		throw new Error('Failed to fetch user!');
 	}
 };
 
-export const getUsers = async () => {
+export const getUsers = async (): Promise<UserType[]> => {
 	try {
 		await connectToDatabase();
 		return await User.find();
