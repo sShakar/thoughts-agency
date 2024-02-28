@@ -1,7 +1,10 @@
-'use client';
-
 import Image from 'next/image';
+import type { Metadata } from 'next';
 
+export const metadata: Metadata = {
+	title: 'Contact Us',
+	description: 'Contact us about thoughts agency.'
+};
 export default function ContactPage() {
 	return (
 		<main className="flex max-md:flex-col max-md:gap-16 justify-between items-center">

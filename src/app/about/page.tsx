@@ -1,5 +1,10 @@
 import Image from 'next/image';
+import type { Metadata } from 'next';
 
+export const metadata: Metadata = {
+	title: 'About Us',
+	description: 'Know more about thoughts agency.'
+};
 export default function AboutPage() {
 	return (
 		<main className="flex max-md:flex-col max-md:gap-16 max-md:my-10 justify-between items-center">
