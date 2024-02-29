@@ -1,8 +1,9 @@
 'use server';
 
 import { connectToDatabase } from '@/lib/database';
-import { Post } from '@/lib/models';
+import { User, Post } from '@/lib/models';
 import { revalidatePath } from 'next/cache';
+import { signIn, signOut } from '@/lib/auth';
 
 export async function addPost(formData: FormData) {
 	const { title, description, slug, userId } = Object.fromEntries(formData);
@@ -34,6 +35,33 @@ export async function deletePost(formData: FormData) {
 
 		revalidatePath('/blog');
 		console.log('Post deleted successfully');
+	} catch (err) {
+		console.error(err);
+	}
+}
+
+export async function handleGithubLogin() {
+	await signIn('github');
+}
+
+export async function handleLogout() {
+	await signOut();
+}
+
+export async function registerUser(formData: FormData) {
+	const { username, email, password, confirmPassword } = Object.fromEntries(formData);
+	if (password !== confirmPassword) return 'Passwords does not match.';
+
+	try {
+		await connectToDatabase();
+		const newUser = new User({
+			username,
+			email,
+			password
+		});
+
+		await newUser.save();
+		console.log('User registered successfully');
 	} catch (err) {
 		console.error(err);
 	}
