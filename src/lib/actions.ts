@@ -49,15 +49,19 @@ export async function handleLogout() {
 }
 
 export async function registerUser(formData: FormData) {
-	const { username, email, password, confirmPassword } = Object.fromEntries(formData);
+	const { username, email, img, password, confirmPassword } = Object.fromEntries(formData);
 	if (password !== confirmPassword) return 'Passwords does not match.';
 
 	try {
 		await connectToDatabase();
+		const user = await User.findOne({ username });
+		if (user) return 'Username already exists.';
+
 		const newUser = new User({
 			username,
 			email,
-			password
+			password,
+			img
 		});
 
 		await newUser.save();
