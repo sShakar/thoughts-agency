@@ -36,7 +36,6 @@ export default function RegisterForm() {
 			>
 				Register
 			</button>
-			{state?.error && <p>{state.error}</p>}
 		</form>
 	);
 }
