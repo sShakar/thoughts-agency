@@ -1,9 +1,10 @@
 'use server';
 
-import { connectToDatabase } from '@/lib/database';
-import { User, Post } from '@/lib/models';
 import { revalidatePath } from 'next/cache';
+import bcrypt from 'bcrypt';
+import { connectToDatabase } from '@/lib/database';
 import { signIn, signOut } from '@/lib/auth';
+import { User, Post } from '@/lib/models';
 
 export async function addPost(formData: FormData) {
 	const { title, description, slug, userId } = Object.fromEntries(formData);
@@ -57,10 +58,13 @@ export async function registerUser(formData: FormData) {
 		const user = await User.findOne({ username });
 		if (user) return 'Username already exists.';
 
+		const salt = await bcrypt.genSalt(10);
+		const hashedPassword = await bcrypt.hash(password.toString(), salt);
+
 		const newUser = new User({
 			username,
 			email,
-			password,
+			password: hashedPassword,
 			img
 		});
 
