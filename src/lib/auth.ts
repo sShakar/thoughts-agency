@@ -10,15 +10,14 @@ async function loginWithCredentials(credentials: { username: string; password: s
 		await connectToDatabase();
 
 		const user = await User.findOne({ username: credentials.username });
-		if (!user) throw new Error('No user found');
+		if (!user) return { error: 'No user found' };
 
 		const isValid = await bcrypt.compare(credentials.password, user.password);
-		if (!isValid) throw new Error('Invalid password');
+		if (!isValid) return { error: 'Invalid password' };
 
 		return user;
-	} catch (err) {
-		console.log(err);
-		throw new Error('Something went wrong.');
+	} catch {
+		return { error: 'Something went wrong.' };
 	}
 }
 
@@ -37,9 +36,8 @@ export const {
 						username: String(credentials.username),
 						password: String(credentials.password)
 					});
-				} catch (err) {
-					console.log(err);
-					return null;
+				} catch {
+					return { error: 'Invalid credentials' };
 				}
 			}
 		})
@@ -61,8 +59,7 @@ export const {
 
 						await newUser.save();
 					}
-				} catch (err) {
-					console.log(err);
+				} catch {
 					return false;
 				}
 			}

@@ -22,8 +22,8 @@ export async function addPost(formData: FormData) {
 
 		revalidatePath('/blog');
 		console.log('Post added successfully');
-	} catch (err) {
-		console.error(err);
+	} catch {
+		return { error: 'Failed to add post.' };
 	}
 }
 
@@ -36,8 +36,8 @@ export async function deletePost(formData: FormData) {
 
 		revalidatePath('/blog');
 		console.log('Post deleted successfully');
-	} catch (err) {
-		console.error(err);
+	} catch {
+		return { error: 'Failed to delete post.' };
 	}
 }
 
@@ -51,12 +51,12 @@ export async function handleLogout() {
 
 export async function registerUser(formData: FormData) {
 	const { username, email, img, password, confirmPassword } = Object.fromEntries(formData);
-	if (password !== confirmPassword) return 'Passwords does not match.';
+	if (password !== confirmPassword) return { error: 'Passwords does not match.' };
 
 	try {
 		await connectToDatabase();
 		const user = await User.findOne({ username });
-		if (user) return 'Username already exists.';
+		if (user) return { error: 'Username already exists.' };
 
 		const salt = await bcrypt.genSalt(10);
 		const hashedPassword = await bcrypt.hash(password.toString(), salt);
@@ -70,8 +70,8 @@ export async function registerUser(formData: FormData) {
 
 		await newUser.save();
 		console.log('User registered successfully');
-	} catch (err) {
-		console.error(err);
+	} catch {
+		return { error: 'Failed to register user.' };
 	}
 }
 
@@ -80,7 +80,7 @@ export async function loginUser(formData: FormData) {
 
 	try {
 		await signIn('credentials', { username, password });
-	} catch (err) {
-		console.error(err);
+	} catch {
+		return { error: 'Failed to login.' };
 	}
 }
