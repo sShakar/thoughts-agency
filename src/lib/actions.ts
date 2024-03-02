@@ -74,3 +74,13 @@ export async function registerUser(formData: FormData) {
 		console.error(err);
 	}
 }
+
+export async function loginUser(formData: FormData) {
+	const { username, password } = Object.fromEntries(formData);
+
+	try {
+		await signIn('credentials', { username, password });
+	} catch (err) {
+		console.error(err);
+	}
+}
