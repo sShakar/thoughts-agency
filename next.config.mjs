@@ -12,7 +12,6 @@ const nextConfig = {
 			},
 		],
 	},
-	target: 'serverless',
 };
 
 export default nextConfig;
